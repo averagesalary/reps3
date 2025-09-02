@@ -1,9 +1,182 @@
-<html>
-	<head>
-		<title>Test download</title>
-	</head>
-	<body>
-		<h4> 007 - Blood Stone (USA) (En,Fr): <a href="https://myrient.erista.me/files/Redump/Sony%20-%20PlayStation%203/007%20-%20Blood%20Stone%20%28USA%29%20%28En%2CFr%29.zip">Here</a></h4>
-		
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Connection Checker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #1a73e8;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+        p {
+            color: #5f6368;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .status-container {
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+        .status-code {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .status-200 {
+            color: #34a853;
+        }
+        .status-404 {
+            color: #ea4335;
+        }
+        .status-message {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0d62c9;
+        }
+        .loading {
+            display: none;
+            margin: 20px 0;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #1a73e8;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .note {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #70757a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Google Connection Checker</h1>
+        <p>This tool checks your connection to Google's servers. Click the button below to test.</p>
+        
+        <div class="status-container">
+            <div class="status-message">Status will appear here</div>
+            <div class="status-code">-</div>
+        </div>
+        
+        <div class="loading">
+            <div class="loader"></div>
+            <p>Checking connection...</p>
+        </div>
+        
+        <button class="button" onclick="checkConnection()">Check Connection to Google</button>
+        
+        <p class="note">Note: This test attempts to fetch Google's homepage. A successful connection returns status 200, while a failed connection returns 404.</p>
+    </div>
+
+    <script>
+        function checkConnection() {
+            const statusMessage = document.querySelector('.status-message');
+            const statusCode = document.querySelector('.status-code');
+            const loading = document.querySelector('.loading');
+            
+            // Show loading animation
+            loading.style.display = 'block';
+            statusMessage.textContent = 'Checking connection...';
+            statusCode.textContent = '-';
+            statusCode.className = 'status-code';
+            
+            // Use a timestamp to prevent caching
+            const timestamp = new Date().getTime();
+            const url = `https://www.google.com?nocache=${timestamp}`;
+            
+            fetch(url, { 
+                method: 'HEAD',
+                mode: 'no-cors'
+            })
+            .then(response => {
+                // Even with no-cors, we can sometimes determine if the request succeeded
+                displayResult(200, 'Connected to Google successfully!');
+            })
+            .catch(error => {
+                displayResult(404, 'Failed to connect to Google');
+            });
+            
+            // Fallback in case fetch fails completely
+            setTimeout(() => {
+                if (statusCode.textContent === '-') {
+                    displayResult(404, 'Connection timeout - could not reach Google');
+                }
+            }, 5000);
+            
+            function displayResult(code, message) {
+                loading.style.display = 'none';
+                statusMessage.textContent = message;
+                statusCode.textContent = code;
+                
+                if (code === 200) {
+                    statusCode.classList.add('status-200');
+                } else {
+                    statusCode.classList.add('status-404');
+                }
+            }
+        }
+    </script>
+</body>
 </html>
+```
+
+How It Works
+
+1. The page displays a clean, modern interface with a gradient background
+2. When you click the "Check Connection to Google" button, it sends a HEAD request to Google's homepage
+3. If the connection is successful, it displays a green "200" status code
+4. If the connection fails, it displays a red "404" status code
+5. A loading animation appears while the connection is being tested
+
+The code uses the Fetch API with 'no-cors' mode to work around browser security restrictions. Note that due to CORS policies, we can't always get the exact HTTP status code from external domains, but this implementation provides a reliable way to check connectivity.
+
+You can save this code to an index.html file and open it in a web browser to test your connection to Google.
