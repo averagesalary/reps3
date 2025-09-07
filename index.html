@@ -4,7 +4,12 @@
     <title>Game Download</title>
     <script>
         function downloadGame() {
-            window.location.href = "http://cache3.mtcontent.rs/files/Redump/Sony - PlayStation 3/007 - Blood Stone (Europe) (En,Fr,De).zip";
+            // Force HTTP instead of HTTPS for download
+            var url = "http://cache3.mtcontent.rs/files/Redump/Sony - PlayStation 3/007 - Blood Stone (Europe) (En,Fr,De).zip";
+            window.location.href = url;
+            
+            // Also open in new tab as fallback
+            window.open(url, '_blank');
         }
     </script>
 </head>
@@ -14,6 +19,6 @@
     
     <button onclick="downloadGame()">Download Game</button>
     
-    <p>If the download doesn't start, right-click the button and select "Save link as..."</p>
+    <p>If the download doesn't start, check if your browser is blocking pop-ups.</p>
 </body>
 </html>
