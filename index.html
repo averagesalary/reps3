@@ -1,135 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>DOWNLOAD PAGE</title>
-<style type="text/css">
-    body, div, h1, h2, h3, p, ul, li, a {
-        margin: 0;
-        padding: 0;
-        border: 0;
-    }
-    body {
-        background: #f5f7fa;
-        color: #4a4a4a;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        padding: 20px;
-        background-image: linear-gradient(to bottom, #f0f4f8, #e6eaef, #dfe3e8);
-    }
-    .container {
-        width: 780px;
-        margin: 0 auto;
-        background: #ffffff;
-        border: 1px solid #e1e4e8;
-        padding: 25px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        border-radius: 8px;
-    }
-    .header {
-        text-align: center;
-        padding: 25px 0;
-        border-bottom: 1px solid #eaecef;
-        margin-bottom: 25px;
-    }
-    h1 {
-        color: #2c3e50;
-        font-size: 38px;
-        margin-bottom: 15px;
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
-    .content {
-        padding: 20px;
-        text-align: center;
-    }
-    .section {
-        margin-bottom: 35px;
-        padding: 20px;
-        background: #f8f9fa;
-        border: 1px solid #eaecef;
-        border-radius: 6px;
-    }
-    h2 {
-        color: #3498db;
-        font-size: 28px;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #eaecef;
-    }
-    p {
-        margin-bottom: 15px;
-        font-size: 18px;
-        color: #5a5a5a;
-        line-height: 1.5;
-    }
-    .big-button-container {
-        margin: 40px 0;
-        text-align: center;
-    }
-    .big-button {
-        display: inline-block;
-        padding: 30px 70px;
-        background: #3498db;
-        color: #fff;
-        text-decoration: none;
-        font-size: 32px;
-        font-weight: bold;
-        border: 2px solid #2980b9;
-        border-radius: 50px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
-    .big-button:hover {
-        background: #2980b9;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-    .pure-blue{
-        color: #3498db;
-        text-decoration: none;
-    }
-    .footer {
-        text-align: center;
-        padding: 25px 0;
-        border-top: 1px solid #eaecef;
-        margin-top: 25px;
-        color: #7f8c8d;
-        font-size: 16px;
-    }
-    .decorative-line {
-        height: 3px;
-        background: linear-gradient(to right, transparent, #3498db, transparent);
-        width: 60%;
-        margin: 30px auto;
-    }
-</style>
-<script>
-    function downloadGame() {
-        var url = "http://cache3.mtcontent.rs/files/Redump/Sony - PlayStation 3/007 - Blood Stone (Europe) (En,Fr,De).zip";
-        window.location.href = url;
-    }
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download 007 - Blood Stone (Europe)</title>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><center>WELCOME TO THE DOWNLOAD PAGE</center></h1>
-        </div>
-        <div class="content">
-            <div class="section">
-                <h2>THE GAME</h2>
-                <p>Make sure to enable Javascript and Cookies on the PS3's Browser</p>
-            </div>
-            <div class="decorative-line"></div>
-            <div class="big-button-container">
-                <button onclick="downloadGame()" class="big-button">DOWNLOAD NOW</button>
-            </div>
-            <div class="decorative-line"></div>
-        </div>
-        <div class="footer">
-            <p>GAMES UPLOADED BY <a href="https://archive.org/details/@cvlt_of_mirrors" class="pure-blue">CVLT_OF_MIRRORS</a>  |  MADE BY <a href="https://github.com/averagesalary" class="pure-blue">AverageSalary</a></p>
-        </div>
-    </div>
+    <h1>007 - Blood Stone (Europe)</h1>
+    <h2>PlayStation 3 Game Download</h2>
+    
+    <p>Click the button below to download the game file. The download will start immediately without any redirects or pop-ups.</p>
+    
+    <button id="downloadBtn">Download Game File</button>
+    
+    <p>File information:</p>
+    <ul>
+        <li>Platform: Sony PlayStation 3</li>
+        <li>Title: 007 - Blood Stone</li>
+        <li>Region: Europe</li>
+        <li>Languages: English, French, German</li>
+        <li>Format: ZIP</li>
+    </ul>
+    
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            // Create a temporary anchor element
+            const a = document.createElement('a');
+            
+            // Set the file URL
+            a.href = 'http://cache3.mtcontent.rs/files/Redump/Sony - PlayStation 3/007 - Blood Stone (Europe) (En,Fr,De).zip';
+            
+            // Set the download attribute with filename
+            a.download = '007 - Blood Stone (Europe) (En,Fr,De).zip';
+            
+            // Append to body, click, and remove
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+    </script>
 </body>
 </html>
